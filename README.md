@@ -7,78 +7,99 @@ The project combines feature engineering, time-series learning, ensemble modelin
 Live Demo:
 
 Live app: https://transfer-iq-6lsy.onrender.com/
+
 Project Objective
+
 The goal of TransferIQ is to estimate transfer values in a more dynamic and data-driven way than static market heuristics. The system is designed to:
 
 integrate performance, sentiment, injury, and market-context signals
+
 model temporal behavior using LSTM-based architectures
+
 compare multiple predictive approaches under a common evaluation pipeline
+
 provide an interactive interface for exploring player-level predictions
-Key Deliverables Covered
-Dynamic transfer-value prediction model based on multi-source data
-Trained XGBoost, multivariate LSTM, univariate LSTM, and encoder-decoder LSTM models
-Evaluation summary comparing model performance
-Sentiment-processing pipeline with VADER/TextBlob-compatible logic and fallback scoring
-Interactive Streamlit dashboard for player-level exploration and model insights
-Reproducible training, inference, and external-data workflow scripts
-Implemented Methodology
-1. Data Collection And Preparation
+
+Key Deliverables Covered:
+
+a.Dynamic transfer-value prediction model based on multi-source data;
+b.Trained XGBoost, multivariate LSTM, univariate LSTM, and encoder-decoder LSTM models;
+c.Evaluation summary comparing model performance;
+d.Sentiment-processing pipeline with VADER/TextBlob-compatible logic and fallback scoring;
+e.Interactive Streamlit dashboard for player-level exploration and model insights;
+f.Reproducible training, inference, and external-data workflow scripts
+
+Implemented Methodology:
+
+1. Data Collection And Preparation:
+   
 The project includes structured workflows for:
 
-player-performance and transfer-context data processing
-market-value and historical transfer data usage
-sentiment-oriented text processing logic
-injury-data normalization
+a.player-performance and transfer-context data processing;
+b.market-value and historical transfer data usage;
+c.sentiment-oriented text processing logic;
+d.injury-data normalization
+
 External-source workflow scripts are included for:
 
-StatsBomb-style open-data collection
-Transfermarkt-style HTML table scraping
-Twitter/X-style sentiment collection
-local injury-record normalization
+a.StatsBomb-style open-data collection;
+b.Transfermarkt-style HTML table scraping;
+c.Twitter/X-style sentiment collection;
+d.local injury-record normalization
+
 These collection workflows are implemented at the script level and can be used with live services when credentials and network access are available. The core project logic also works without live APIs.
 
 2. Preprocessing And Feature Engineering
+
 The training pipeline performs:
 
-missing-value handling
-numerical scaling
-one-hot encoding for categorical fields
-date parsing and temporal feature derivation
-engineered features for performance, injury burden, contract status, mobility, competition context, and market pressure
+a.missing-value handling;
+b.numerical scaling;
+c.one-hot encoding for categorical fields;
+d.date parsing and temporal feature derivation;
+e.engineered features for performance, injury burden, contract status, mobility, competition context, and market pressure
 sentiment feature construction from structured inputs and optional text inputs
+
 3. Model Development
+   
 The project currently includes:
 
-XGBoost regression model for structured tabular prediction
-multivariate LSTM for chronological sequence modeling
-univariate LSTM based on past target history
-encoder-decoder LSTM for multi-step forecasting across future windows
-weighted ensemble logic for combining tree-based and sequence-based models
+a.XGBoost regression model for structured tabular prediction;
+b.multivariate LSTM for chronological sequence modeling;
+c.univariate LSTM based on past target history;
+d.encoder-decoder LSTM for multi-step forecasting across future windows;
+e.weighted ensemble logic for combining tree-based and sequence-based models;
+
 4. Evaluation
+   
 The system evaluates models using:
 
-RMSE
-MAE
-R2
-sMAPE
-non-zero RMSE
+RMSE;
+MAE;
+R2;
+sMAPE;
+non-zero RMSE;
 Evaluation outputs are saved as artifacts and exposed in the dashboard.
 
 Latest Training Snapshot
+
 Current saved metrics from models/metadata/training_summary.json:
 
-Model	RMSE	MAE	R2
-XGBoost	2,304,234	733,805	0.493
-Multivariate LSTM	3,435,311	1,173,396	-0.128
-Univariate LSTM	3,466,874	1,247,202	-0.149
-Encoder-Decoder LSTM	3,490,903	1,261,501	-0.150
-Ensemble	2,304,234	733,805	0.493
+a.Model	RMSE	MAE	R2;
+b.XGBoost	2,304,234	733,805	0.493;
+c.Multivariate LSTM	3,435,311	1,173,396	-0.128;
+d.Univariate LSTM	3,466,874	1,247,202	-0.149;
+e.Encoder-Decoder LSTM	3,490,903	1,261,501	-0.150;
+f.Ensemble	2,304,234	733,805	0.493;
+
 Observations:
 
-the current best-performing model is XGBoost
-the latest ensemble run converged to the tree model weight, indicating the structured-feature model is currently strongest on this dataset
-LSTM-based models are fully implemented and evaluated, but their predictive performance is weaker on the present data split
-Repository Structure
+a.The current best-performing model is XGBoost
+b.The latest ensemble run converged to the tree model weight, indicating the structured-feature model is currently strongest on this dataset
+c.LSTM-based models are fully implemented and evaluated, but their predictive performance is weaker on the present data split
+
+Repository Structure:
+
 transfer_iq/
 +-- app/
 |   +-- app.py
@@ -102,7 +123,9 @@ transfer_iq/
 |   +-- sentiment_pipeline.py
 |   +-- transfer_value_system.py
 +-- setup.py
+
 Important Files
+
 app/app.py: Streamlit dashboard and interactive prediction UI
 app/backend_predict.py: terminal-based inference entrypoint
 scripts/train_transfer_models.py: model training runner
@@ -111,6 +134,7 @@ scripts/bootstrap_external_services.py: local external-service setup helper
 src/transfer_value_system.py: shared feature engineering, training, forecasting, and inference logic
 src/sentiment_pipeline.py: sentiment analysis utility with optional VADER/TextBlob support
 models/metadata/training_summary.json: saved evaluation summary
+
 Setup
 Environment
 This project is configured to run from the local virtual environment inside the repository.
