@@ -1,9 +1,11 @@
-Transfer_Fee_Prediction
+Transfer_Fee_Prediction:
+
 TransferIQ is an AI-driven football transfer valuation project that predicts player transfer values using multi-source signals such as player performance, injury history, contract context, sentiment-related features, and historical transfer-market patterns.
 
 The project combines feature engineering, time-series learning, ensemble modeling, evaluation reporting, and an interactive Streamlit dashboard in one end-to-end workflow. It is structured to support both academic evaluation and practical demonstration.
 
 Live Demo:
+
 Live app: https://transfer-iq-6lsy.onrender.com/
 Project Objective
 The goal of TransferIQ is to estimate transfer values in a more dynamic and data-driven way than static market heuristics. The system is designed to:
